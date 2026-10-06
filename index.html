@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My Cashbook</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="logo">₹</span><div><b>My Cashbook</b><small>Simple • Fast • Private</small></div></div>
+  <div class="actions">
+    <button id="exportBtn" class="ghost">Export</button>
+    <label class="ghost fileBtn">Import<input id="importFile" type="file" accept=".json"></label>
+    <button id="addTop" class="primary">+ Transaction</button>
+  </div>
+</header>
+
+<main>
+  <section class="cards">
+    <div class="card credit"><div class="icon">↗</div><div><span>Total Credit Amount</span><strong id="totalCredit">₹0.00</strong></div></div>
+    <div class="card debit"><div class="icon">↘</div><div><span>Total Debit Amount</span><strong id="totalDebit">₹0.00</strong></div></div>
+    <div class="card balance"><div class="icon">₹</div><div><span>Cash Balance</span><strong id="cashBalance">₹0.00</strong></div></div>
+  </section>
+
+  <section class="toolbar">
+    <div><label>Month & Year</label><select id="monthFilter"></select></div>
+    <div class="search"><label>Lookup</label><input id="search" placeholder="Search description, date, amount..."></div>
+    <button id="clearSearch" class="ghost">Clear</button>
+  </section>
+
+  <section class="summaryline">
+    <b id="periodTitle">All Transactions</b>
+    <span id="countLabel">0 entries</span>
+  </section>
+
+  <section class="tableWrap">
+    <table>
+      <thead><tr><th>S.NO.</th><th>Date</th><th>Description</th><th class="num">Credit</th><th class="num">Debit</th><th class="num">Cash Balance</th><th></th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div id="empty" class="empty">No transactions found.</div>
+  </section>
+</main>
+
+<div id="modal" class="modal hidden">
+ <div class="dialog">
+  <div class="dialogHead"><h2 id="modalTitle">New Transaction</h2><button id="closeModal">×</button></div>
+  <form id="txnForm">
+   <input type="hidden" id="editId">
+   <label>Date<input type="date" id="date" required></label>
+   <label>Description<input id="description" required placeholder="e.g. Shop Income"></label>
+   <div class="two">
+    <label>Credit (₹)<input type="number" id="credit" min="0" step="0.01" value="0"></label>
+    <label>Debit (₹)<input type="number" id="debit" min="0" step="0.01" value="0"></label>
+   </div>
+   <div class="hint">Enter either Credit or Debit. For an opening balance, use Credit.</div>
+   <div class="formActions"><button type="button" id="cancel" class="ghost">Cancel</button><button class="primary">Save Transaction</button></div>
+  </form>
+ </div>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>
